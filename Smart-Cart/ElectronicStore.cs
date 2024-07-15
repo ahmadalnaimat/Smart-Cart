@@ -3,30 +3,30 @@ using System.Collections.Generic;
 
 namespace ShoppingCartApplication
 {
-    public class ClothingStore : IStore
+    public class ElectronicStore : IStore
     {
         private ProductGenerator productGenerator;
-        public List<Product> ClothingProducts { get; private set; }
+        public List<Product> ElectronicProducts { get; private set; }
 
-        public ClothingStore()
+        public ElectronicStore()
         {
             productGenerator = new ProductGenerator();
-            ClothingProducts = new List<Product>();
+            ElectronicProducts = new List<Product>();
         }
 
         public void FillProducts(int numberOfProducts)
         {
             for (int i = 0; i < numberOfProducts; i++)
             {
-                Product clothingProduct = productGenerator.GenerateClothingProduct();
-                ClothingProducts.Add(clothingProduct);
+                Product electronicProduct = productGenerator.GenerateElectronicProduct();
+                ElectronicProducts.Add(electronicProduct);
             }
         }
 
         public void DisplayProducts()
         {
-            Console.WriteLine("Clothing Products:");
-            foreach (var product in ClothingProducts)
+            Console.WriteLine("Electronic Products:");
+            foreach (var product in ElectronicProducts)
             {
                 Console.WriteLine($"{product.Name}, {product.Price:C}");
             }
@@ -34,12 +34,13 @@ namespace ShoppingCartApplication
 
         public Product GetProductByNumber(int productNumber)
         {
-            if (productNumber <= 0 || productNumber > ClothingProducts.Count)
+            if (productNumber <= 0 || productNumber > ElectronicProducts.Count)
             {
                 Console.WriteLine($"Invalid product number: {productNumber}");
                 return null;
             }
-            return ClothingProducts[productNumber - 1];
+
+            return ElectronicProducts[productNumber - 1];
         }
     }
 }
